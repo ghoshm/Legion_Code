@@ -4,8 +4,8 @@ function [gCount,gCount_norm] = Grammar_Freq(threads,uniqueSeqs,t_one,t_two)
     % Allocate
     for tc = 1:size(threads,3) % for real & shuffled data 
      gCount{1,tc} =  zeros(size(uniqueSeqs{1,1},1),(t_two-1),'single'); % uniqueSeqs x time windows
+     gCount_norm{1,tc} = zeros(size(uniqueSeqs{1,1},1),(t_two-1),'single'); % uniqueSeqs x time windows
     end 
-    gCount_norm{1,1} = zeros(size(uniqueSeqs{1,1},1),(t_two-1),'single'); % uniqueSeqs x time windows
 
     % Loop
     for s = 1:size(uniqueSeqs{1,1},1) % For each sequence
@@ -24,11 +24,15 @@ function [gCount,gCount_norm] = Grammar_Freq(threads,uniqueSeqs,t_one,t_two)
         end
         
         % Z-Score 
-        gCount_norm{1,1}(s,:) =  (temp(1,:) - nanmean(temp(2:end,:)))./nanstd(temp(2:end,:)); 
-        
+         for tc = 1:size(threads,3)  % for real & shuffled data
+                gCount_norm{1,tc}(s,:) =  (temp(tc,:) - nanmean(temp(setdiff(2:end,tc),:)))./nanstd(temp(setdiff(2:end,tc),:)); 
+         end 
+
     end
     
         % Replace NaN Values with zeros 
-        gCount_norm{1,1}(isnan(gCount_norm{1,1})) = 0; 
+        for tc = 1:size(threads,3)  % for real & shuffled data
+            gCount_norm{1,tc}(isnan(gCount_norm{1,tc})) = 0; 
+        end 
         
 end

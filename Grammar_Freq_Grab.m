@@ -8,7 +8,7 @@ jobs = findJob(c); % gets a list of jobs submitted to that cluster
 
 % Allocate 
  gCount = cell(size(jobs,1),shuffles); % fish x test & controls 
- gCount_norm = cell(size(jobs,1),1); % fish x 1 
+ gCount_norm = cell(size(jobs,1),shuffles); % fish x test & controls  
  q_time = zeros(size(jobs,1),1); % fish x 1 
  calc_time = zeros(size(jobs,1),1); % fish x 1 
  errors = []; % store fish who errored 
