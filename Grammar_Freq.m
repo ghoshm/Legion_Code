@@ -23,7 +23,7 @@ function [gCount,gCount_norm] = Grammar_Freq(threads,uniqueSeqs,t_one,t_two)
             temp(tc,:) = gCount{1,tc}(s,:); 
         end
         
-        % Z-Score 
+        % Z-Scores
          for tc = 1:size(threads,3)  % for real & shuffled data
                 gCount_norm{1,tc}(s,:) =  (temp(tc,:) - nanmean(temp(setdiff(2:end,tc),:)))./nanstd(temp(setdiff(2:end,tc),:)); 
          end 
