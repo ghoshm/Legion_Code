@@ -2,13 +2,13 @@
 
 % Settings 
 shuffles = 1 + 10; % hard coded number of data shuffles (+1 for real data) 
-hours = 74; % hard coded maximum number of hours 
+hours = 7; % hard coded maximum number of time windows  
 
 c = parcluster ('LegionGraceProfile'); % get a cluster object
 jobs = findJob(c); % gets a list of jobs submitted to that cluster
 
 % Allocate
- totSavings = zeros(size(jobs,1),hours,shuffles); % fish x hours x test/control 
+ totSavings = zeros(size(jobs,1),hours,shuffles); % fish x time windows x test/control 
  q_time = zeros(size(jobs,1),1); % fish x 1 
  compression_time = zeros(size(jobs,1),1); % fish x 1 
  errors = []; % store fish who errored 
@@ -20,7 +20,7 @@ for j = 1:size(jobs,1) % for each job
     results = fetchOutputs(jobs(j)); 
 
     % Variables 
-    totSavings(j,:) = results{1}; % take savings 
+    totSavings(j,:,:) = results{1}; % take savings 
     
     % Timings 
     q_time(j,1) = minutes(jobs(j).StartDateTime - jobs(j).SubmitDateTime); % queue time (mins)

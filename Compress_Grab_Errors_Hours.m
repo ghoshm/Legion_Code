@@ -19,10 +19,7 @@ for j = errors % for each fish who errored
     results = fetchOutputs(jobs(counter)); 
 
     % Variables 
-    grammar(j,:) =  results{1}; % take grammar 
-    compVec(j,:) = results{2}; % take compressed vector 
-    totSavings(j,:) = results{3}; % take savings 
-    gTermCell(j,:) = results{4}; % take terminal grammar 
+    totSavings(j,:,:) = results{1}; % take savings 
     
     % Timings 
     q_time(j,1) = minutes(jobs(counter).StartDateTime - jobs(counter).SubmitDateTime); % queue time (mins)
