@@ -20,7 +20,7 @@ for j = 1:size(jobs,1) % for each job
     results = fetchOutputs(jobs(j)); 
 
     % Variables 
-    totSavings(j,:,:) = results{1}; % take savings 
+    totSavings(j,1:size(results{1},2),:) = results{1}; % take savings 
     
     % Timings 
     q_time(j,1) = minutes(jobs(j).StartDateTime - jobs(j).SubmitDateTime); % queue time (mins)
