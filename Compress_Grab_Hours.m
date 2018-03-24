@@ -2,7 +2,7 @@
 
 % Settings 
 shuffles = 1 + 10; % hard coded number of data shuffles (+1 for real data) 
-hours = 7; % hard coded maximum number of time windows  
+hours = 48; % hard coded maximum number of time windows  
 
 c = parcluster ('LegionGraceProfile'); % get a cluster object
 jobs = findJob(c); % gets a list of jobs submitted to that cluster
