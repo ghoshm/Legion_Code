@@ -15,7 +15,7 @@ for f = errors % for each fish
     myJob.AttachedFiles = {'Compress_Hours.m'  'compressSequenceNFast.m' 'getGrammarTerminals.m' ...
         'compressiveNFast.m' 'expandGrammar.m' 'n_gramsNumerical.m' 'countUniqueRows.m'}; % required scripts 
     myJob.NumWorkersRange = [num_workers, num_workers]; % set number of workers 
-    task = createTask(myJob, @Compress_Hours, 1, {threads_hours(f,:,:),sMax,nMax}); % Compress, return 1 output, input data 
+    task = createTask(myJob, @Compress_Hours, 1, {threads(f,:,:),sMax,nMax}); % Compress, return 1 output, input data 
     submit (myJob); % submit job 
         
 end 

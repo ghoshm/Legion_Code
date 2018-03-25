@@ -16,7 +16,7 @@ for f = 1:size(threads,1) % for each fish
     myJob = createCommunicatingJob(c, 'Type', 'Pool'); % Create a cluster profile 
     myJob.AttachedFiles = {'Grammar_Freq.m'}; % required scripts 
     myJob.NumWorkersRange = [num_workers, num_workers]; % set number of workers 
-    task = createTask(myJob, @Grammar_Freq, 2, {threads_hours(f,:,:),uniqueSeqs,t_one,t_two}); % Compress, return 2 outputs, input data 
+    task = createTask(myJob, @Grammar_Freq, 2, {threads(f,:,:),uniqueSeqs,t_one,t_two}); % Compress, return 2 outputs, input data 
     submit (myJob); % submit job 
         
 end 
