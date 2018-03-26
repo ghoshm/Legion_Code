@@ -1,8 +1,8 @@
-% Compress Loads of Fish & Their Shuffles Per Day/Night 
+% Compress Loads of Fish & Their Shuffles Per Hour
     % One per thread with 10x Shuffles 
-    % nanmean(q_time) = 52.6
-    % nanmean(compression_time) = 40.6 
-    % (max(compression_time))/60 =  3.75
+    % nanmean(q_time) = 1.6
+    % nanmean(compression_time) = 7.7
+    % (max(compression_time))/60 =  0.5
     
  c = parcluster ('LegionGraceProfile'); % Start a terminal session 
  num_workers = 1; % specify number of workers 
