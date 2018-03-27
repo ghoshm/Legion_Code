@@ -1,13 +1,13 @@
 % Grammar_Freq_Grab 
 
 % Settings 
-shuffles = 1 + 10; % hard coded number of data shuffles (+1 for real data) 
+shuffles = 1; % hard coded number of data shuffles (+1 for real data) 
 
 c = parcluster ('LegionGraceProfile'); % get a cluster object
 jobs = findJob(c); % gets a list of jobs submitted to that cluster
 
 % Allocate 
- gCount = cell(size(jobs,1),shuffles); % fish x test & controls 
+ %gCount = cell(size(jobs,1),shuffles); % fish x test & controls 
  gCount_norm = cell(size(jobs,1),shuffles); % fish x test & controls  
  q_time = zeros(size(jobs,1),1); % fish x 1 
  calc_time = zeros(size(jobs,1),1); % fish x 1 
@@ -20,8 +20,8 @@ for j = 1:size(jobs,1) % for each job
     results = fetchOutputs(jobs(j)); 
 
     % Variables 
-    gCount(j,:) =  results{1}; % take counts 
-    gCount_norm(j,:) = results{2}; % take normalised counts 
+    %gCount(j,:) =  results{1}; % take counts 
+    gCount_norm(j,:) = results{2}(1,1); % take normalised counts 
     
     % Timings 
     q_time(j,1) = minutes(jobs(j).StartDateTime - jobs(j).SubmitDateTime); % queue time (mins)

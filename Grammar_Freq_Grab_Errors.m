@@ -8,7 +8,7 @@ load('Results.mat'); % load correct data
 disp('Loaded Results Data'); % report on slow loading 
 
 % Start a counter 
-counter = size(gCount,1) + 1; % start one higher than the size of your data  
+counter = size(gCount_norm,1) + 1; % start one higher than the size of your data  
  
 % Fill in data for the fish who errored 
 errors_2 = []; % keep track of fish who didn't return outputs again... 
@@ -19,8 +19,8 @@ for j = errors % for each fish who errored
     results = fetchOutputs(jobs(counter)); 
 
     % Variables 
-    gCount(j,:) =  results{1}; % take grammar 
-    gCount_norm(j,:) = results{2}; % take normalised counts 
+    %gCount(j,:) =  results{1}; % take grammar 
+    gCount_norm(j,:) = results{2}(1,1); % take normalised counts 
 
     % Timings 
     q_time(j,1) = minutes(jobs(counter).StartDateTime - jobs(counter).SubmitDateTime); % queue time (mins)
