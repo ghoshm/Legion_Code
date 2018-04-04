@@ -1,28 +1,28 @@
-function [GMModels,AIC,BIC,idx,nlogl,P] = GhoshMarcusModels(data,num_clusters)
+function [GMModels,idx,P,BIC] = GhoshMarcusModels(Xf,k_max,rv,options)
 
-options = statset('MaxIter',1000); % Hard coded number of iterations 
+% allocate 
+GMModels = cell(2,k_max(end)); % models 
+idx = cell(2,k_max(end)); % cluster assignments 
+P = cell(2,k_max(end)); % posterior probabilities 
+BIC = zeros(2,k_max(end),'single'); % info criteria 
 
-AIC = zeros(1,num_clusters); 
-BIC = zeros(1,num_clusters); 
-GMModels = cell(num_clusters,1);
-idx = cell(num_clusters,1);
-nlogl = cell(num_clusters,1);
-P = cell(num_clusters,1);
-score_values = unique(data); % Find unique scores 
-score_zero = knnsearch(score_values,0); % Find the closest to zero
-rv = score_values(score_zero); % Regularization value 
+% Loop
+for s = 1:2 % for active/inactive 
+    
+    for k = k_max % for each clustering 
 
-for k = num_clusters % Try this many groups
+        GMModels{s,k} = fitgmdist(Xf{s,1},k,...
+            'Options',options,'RegularizationValue',...
+            rv,'Replicates',5); % Fit K gaussians
+        
+        [idx{s,k},~,P{s,k}] = cluster(GMModels{s,k},Xf{s,1});
+        P{s,k} = max(P{s,k},[],2); % Keep only assigned probabilities (helps memory)
+        
+        % Information Criteria
+        BIC(s,k)= GMModels{s,k}.BIC; % Extract BIC
+        
+    end
     
-    GMModels{k} = fitgmdist(data,k,...
-        'Options',options,'RegularizationValue',...
-        abs(rv),'Replicates',5); % Fit K gaussians
-    
-    AIC(k)= GMModels{k}.AIC; % Extract AIC
-    BIC(k)= GMModels{k}.BIC; % Extract BIC
-    
-    % Cluster using this mixing
-    [idx{k},nlogl{k},P{k}] = cluster(GMModels{k},data);
 end
 
 end
