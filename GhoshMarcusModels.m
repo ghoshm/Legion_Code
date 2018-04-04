@@ -1,10 +1,12 @@
-function [GMModels,idx,P,BIC] = GhoshMarcusModels(Xf,k_max,rv,options)
+function [GMModels,idx,P,BIC,AIC] = GhoshMarcusModels(Xf,k_max,rv,options)
 
 % allocate 
 GMModels = cell(2,k_max(end)); % models 
 idx = cell(2,k_max(end)); % cluster assignments 
 P = cell(2,k_max(end)); % posterior probabilities 
 BIC = zeros(2,k_max(end),'single'); % info criteria 
+AIC = zeros(2,k_max(end),'single'); % info criteria 
+
 
 % Loop
 for s = 1:2 % for active/inactive 
@@ -20,7 +22,8 @@ for s = 1:2 % for active/inactive
         
         % Information Criteria
         BIC(s,k)= GMModels{s,k}.BIC; % Extract BIC
-        
+        AIC(s,k)= GMModels{s,k}.AIC; % Extract AIC
+
     end
     
 end

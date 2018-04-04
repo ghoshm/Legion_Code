@@ -8,6 +8,8 @@ jobs = findJob(c); % gets a list of jobs submitted to that cluster
 % Allocate 
 BIC{1,1} = nan(size(jobs,1),k_max(end),'single'); % fish x clusters fit 
 BIC{2,1} = nan(size(jobs,1),k_max(end),'single'); % fish x clusters fit 
+AIC{1,1} = nan(size(jobs,1),k_max(end),'single'); % fish x clusters fit 
+AIC{2,1} = nan(size(jobs,1),k_max(end),'single'); % fish x clusters fit 
 q_time = zeros(size(jobs,1),1); % fish x 1 
 calc_time = zeros(size(jobs,1),1); % fish x 1 
 errors = []; % store fish who errored 
@@ -21,7 +23,9 @@ for j = 1:size(jobs,1) % for each job
     % Variables 
     BIC{1,1}(j,:) =  results{1,4}(1,:); % take active BIC 
     BIC{2,1}(j,:) =  results{1,4}(2,:); % take inactive BIC 
-
+    AIC{1,1}(j,:) =  results{1,5}(1,:); % take active AIC 
+    AIC{2,1}(j,:) =  results{1,5}(2,:); % take inactive AIC 
+    
     % Timings 
     q_time(j,1) = minutes(jobs(j).StartDateTime - jobs(j).SubmitDateTime); % queue time (mins)
     calc_time(j,1) = minutes(jobs(j).FinishDateTime - jobs(j).StartDateTime); % compression time (mins) 

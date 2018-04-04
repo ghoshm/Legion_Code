@@ -30,7 +30,7 @@ for f = 578:max(fish_tags{1,1}) % for each fish
     myJob = createCommunicatingJob(c, 'Type', 'Pool'); % Create a cluster profile 
     myJob.AttachedFiles = {'GhoshMarcusModels.m'}; % required scripts 
     myJob.NumWorkersRange = [num_workers, num_workers]; % set number of workers 
-    task = createTask(myJob, @GhoshMarcusModels, 4, {Xf,k_max,rv,options}); % Compress, return 4 outputs, input data 
+    task = createTask(myJob, @GhoshMarcusModels, 5, {Xf,k_max,rv,options}); % Compress, return 4 outputs, input data 
     submit (myJob); % submit job 
         
 end 
