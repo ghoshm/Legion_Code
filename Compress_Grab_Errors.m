@@ -7,12 +7,12 @@ jobs = findJob(c); % gets a list of jobs submitted to that cluster
 load('Results.mat'); % load correct data  
 disp('Loaded Results Data'); % report on slow loading 
 
-% Start a counter 
+% Start a counter (tracks output files) 
 counter = size(grammar,1) + 1; % start one higher than the size of your data  
  
 % Fill in data for the fish who errored 
 errors_2 = []; % keep track of fish who didn't return outputs again... 
-for j = errors % for each fish who errored  
+for j = errors % for each fish who errored, j tracks fish i.d.  
     
     try
     % Fetch Results 

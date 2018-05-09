@@ -30,7 +30,7 @@ function [gCount,gCount_norm] = Grammar_Freq(threads,uniqueSeqs,t_one,t_two)
 
     end
     
-        % Replace NaN Values with zeros 
+        % Replace NaN values (unused sequences) with zeros 
         for tc = 1:size(threads,3)  % for real & shuffled data
             gCount_norm{1,tc}(isnan(gCount_norm{1,tc})) = 0; 
         end 

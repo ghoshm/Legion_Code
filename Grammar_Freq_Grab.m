@@ -1,7 +1,8 @@
 % Grammar_Freq_Grab 
 
 % Settings 
-shuffles = 1; % hard coded number of data shuffles (+1 for real data) 
+shuffles = 1; % hard coded number of data shuffles (+1 for real data)
+    % Set to 11 for threads, set to 1 for threads_hours 
 
 c = parcluster ('LegionGraceProfile'); % get a cluster object
 jobs = findJob(c); % gets a list of jobs submitted to that cluster
@@ -20,8 +21,8 @@ for j = 1:size(jobs,1) % for each job
     results = fetchOutputs(jobs(j)); 
 
     % Variables 
-    %gCount(j,:) =  results{1}; % take counts 
-    gCount_norm(j,:) = results{2}(1,1); % take normalised counts 
+    gCount(j,:) =  results{1}; % take counts (remove for threads_hours)  
+    gCount_norm(j,:) = results{2}; % take normalised counts (results{2}(1,1) for threads_hours)
     
     % Timings 
     q_time(j,1) = minutes(jobs(j).StartDateTime - jobs(j).SubmitDateTime); % queue time (mins)

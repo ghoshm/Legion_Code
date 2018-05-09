@@ -19,8 +19,8 @@ for j = errors % for each fish who errored
     results = fetchOutputs(jobs(counter)); 
 
     % Variables 
-    %gCount(j,:) =  results{1}; % take grammar 
-    gCount_norm(j,:) = results{2}(1,1); % take normalised counts 
+    gCount(j,:) =  results{1}; % take counts (remove for threads_hours) 
+    gCount_norm(j,:) = results{2}; % take normalised counts (results{2}(1,1) for threads_hours)
 
     % Timings 
     q_time(j,1) = minutes(jobs(counter).StartDateTime - jobs(counter).SubmitDateTime); % queue time (mins)

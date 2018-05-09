@@ -1,7 +1,7 @@
 % GMM Per Fish 
-    % nanmean(q_time) =  
-    % nanmean(calc_time) = 
-    % (max(calc_time))/60 = 
+    % nanmean(q_time) = 1.8mins
+    % nanmean(calc_time) = 20mins 
+    % (max(calc_time))/60 = 67mins 
     
  % Settings 
 c = parcluster ('LegionGraceProfile'); % Start a terminal session 
