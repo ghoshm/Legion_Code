@@ -5,7 +5,7 @@
  num_workers = 1; % specify number of workers 
  load('threads.mat'); % load data 
  load('Results.mat','errors'); % load fish who errored 
- sMax = 17; % Hard Coded Starting State 
+ sMax = 11; % Hard Coded Starting State 
  nMax = 10; % Hard Coded Max N-Gram to look for 
     
 tic 
