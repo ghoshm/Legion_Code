@@ -1,7 +1,7 @@
 % Compress Loads of Fish & Their Shuffles 
     % One per thread with 10x Shuffles 
-    % nanmean(q_time) = 43mins 
-    % nanmean(compression_time) = 1h 33mins
+    % nanmean(q_time) = 1.6mins 
+    % nanmean(compression_time) = 1h 15mins
     % (max(compression_time))/60 = 7hours 
     
  c = parcluster ('LegionGraceProfile'); % Start a terminal session 
