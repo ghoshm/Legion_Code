@@ -1,14 +1,14 @@
 % Grammar_Freq_Grab 
 
 % Settings 
-shuffles = 1; % hard coded number of data shuffles (+1 for real data)
+shuffles = 11; % hard coded number of data shuffles (+1 for real data)
     % Set to 11 for threads, set to 1 for threads_hours 
 
 c = parcluster ('LegionGraceProfile'); % get a cluster object
 jobs = findJob(c); % gets a list of jobs submitted to that cluster
 
 % Allocate 
- %gCount = cell(size(jobs,1),shuffles); % fish x test & controls 
+ gCount = cell(size(jobs,1),shuffles); % fish x test & controls 
  gCount_norm = cell(size(jobs,1),shuffles); % fish x test & controls  
  q_time = zeros(size(jobs,1),1); % fish x 1 
  calc_time = zeros(size(jobs,1),1); % fish x 1 
