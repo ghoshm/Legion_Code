@@ -1,7 +1,7 @@
 % Calculate Grammar Sequence Frequencies for all fish
     % One per thread with 10x shuffles
-    % nanmean(calc_time) = 16 mins 
-    % nanmean(q_time) = 32 mins 
+    % nanmean(calc_time) = 10 mins 
+    % nanmean(q_time) = 22 mins 
     
 c = parcluster ('LegionGraceProfile'); % Start a terminal session 
 num_workers = 1; % specify number of workers 
