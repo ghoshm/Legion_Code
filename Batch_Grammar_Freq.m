@@ -5,10 +5,10 @@
     
 c = parcluster ('LegionGraceProfile'); % Start a terminal session 
 num_workers = 1; % specify number of workers 
-load('threads.mat'); % load data (threads or threads_hours here) 
+load('threads_hours.mat'); % load data (threads or threads_hours here) 
 load('uniqueSeqs.mat'); % load data
 t_one = 1; % lowest time window 
-t_two = 8; % highest time window + 1 (8 for threads, 49 for threads_hours)
+t_two = 49; % highest time window + 1 (8 for threads, 49 for threads_hours)
 
 tic 
 for f = 1:size(threads,1) % for each fish 
